@@ -5,15 +5,42 @@ from car_manager import CarManager
 from scoreboard import Scoreboard
 
 
+def start_game():
+    game_is_on = True
+    loop_counter = 0
+    while game_is_on:
+        time.sleep(0.1)
+        screen.update()
+        car_manager.move()
+
+        if player.is_finished():
+            print('You win')
+            level_up()
+
+        if car_manager.collision(player):
+            print('You lose')
+            game_over()
+            game_is_on = False
+
+        if loop_counter % 6 == 0:
+            car_manager.new_car()
+
+        loop_counter += 1
+        print(f'Number of cars: {len(car_manager.cars)}')
+
+
 def level_up():
     scoreboard.level_up()
     car_manager.level_up()
     player.reset()
 
+
 def game_over():
+    player.reset()
     scoreboard.print_gameover()
     car_manager.reset()
-    player.reset()
+
+
 
 screen = Screen()
 screen.title("Turtle Crossing")
@@ -34,23 +61,6 @@ screen.onkey(player.move_left, 'A')
 screen.onkey(player.move_right, 'd')
 screen.onkey(player.move_right, 'D')
 
-game_is_on = True
-loop_counter = 0
-while game_is_on:
-    time.sleep(0.1)
-    screen.update()
-    car_manager.move()
+start_game()
 
-    if player.is_finished():
-        print('You win')
-        level_up()
-
-    if car_manager.collision(player):
-        print('You lose')
-        game_over()
-
-    if loop_counter % 6 == 0:
-        car_manager.new_car()
-
-    loop_counter += 1
-    print(f'Number of cars: {len(car_manager.cars)}')
+screen.exitonclick()

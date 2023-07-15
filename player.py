@@ -30,5 +30,5 @@ class Player(Turtle):
         return self.ycor() == FINISH_LINE_Y
 
     def reset(self):
-        self.setheading(90)
         self.goto(STARTING_POSITION)
+        self.setheading(90)
