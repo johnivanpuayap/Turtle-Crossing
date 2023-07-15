@@ -33,6 +33,10 @@ while game_is_on:
         print('You win')
         break
 
+    if car_manager.collision(player):
+        print('You lose')
+        break
+
     if loop_counter % 6 == 0:
         car_manager.new_car()
 

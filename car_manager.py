@@ -30,3 +30,9 @@ class CarManager:
 
     def new_car(self):
         self.cars.append(self.generate_car())
+
+    def collision(self, player):
+        for car in self.cars:
+            if player.distance(car) < 20:
+                return True
+        return False
