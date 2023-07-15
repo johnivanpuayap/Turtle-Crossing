@@ -4,14 +4,18 @@ from car import Car
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
 MOVE_INCREMENT = 10
-NUMBER_OF_CARS = 10
+STARTING_NUMBER_OF_CARS = 10
 
 
 class CarManager:
     def __init__(self):
         self.cars = []
+        self.number_of_cars = STARTING_NUMBER_OF_CARS
         self.speed = STARTING_MOVE_DISTANCE
-        for i in range(NUMBER_OF_CARS):
+        self.generate_cars()
+
+    def generate_cars(self):
+        for i in range(self.number_of_cars):
             self.cars.append(self.generate_car())
 
     def generate_car(self):
@@ -36,3 +40,17 @@ class CarManager:
             if player.distance(car) < 20:
                 return True
         return False
+
+    def reset(self):
+        for car in self.cars:
+            car.hideturtle()
+            self.cars.remove(car)
+        self.speed = STARTING_MOVE_DISTANCE
+        self.number_of_cars = STARTING_NUMBER_OF_CARS
+
+    def level_up(self):
+        for car in self.cars:
+            car.hideturtle()
+            self.cars.remove(car)
+        self.speed += MOVE_INCREMENT
+        self.number_of_cars += 1

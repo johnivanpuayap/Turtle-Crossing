@@ -4,6 +4,17 @@ from player import Player
 from car_manager import CarManager
 from scoreboard import Scoreboard
 
+
+def level_up():
+    scoreboard.level_up()
+    car_manager.level_up()
+    player.reset()
+
+def game_over():
+    scoreboard.print_gameover()
+    car_manager.reset()
+    player.reset()
+
 screen = Screen()
 screen.title("Turtle Crossing")
 screen.setup(width=600, height=600)
@@ -11,6 +22,7 @@ screen.tracer(0)
 
 player = Player()
 car_manager = CarManager()
+scoreboard = Scoreboard()
 
 screen.listen()
 screen.onkey(player.move_up, 'w')
@@ -31,11 +43,11 @@ while game_is_on:
 
     if player.is_finished():
         print('You win')
-        break
+        level_up()
 
     if car_manager.collision(player):
         print('You lose')
-        break
+        game_over()
 
     if loop_counter % 6 == 0:
         car_manager.new_car()
