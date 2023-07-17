@@ -10,7 +10,7 @@ class Scoreboard(Turtle):
         self.level = 1
         self.hideturtle()
         self.penup()
-        self.print_scoreboard()
+
 
     def print_scoreboard(self):
         self.clear()

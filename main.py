@@ -3,11 +3,20 @@ from turtle import Screen
 from player import Player
 from car_manager import CarManager
 from scoreboard import Scoreboard
+from menu import Menu
+
+
+def play_game():
+    if is_on_menu:
+        start_game()
 
 
 def start_game():
-    print('Starting the game')
+    global is_on_menu
+    is_on_menu = False
     game_is_on = True
+    menu.clear()
+    scoreboard.print_scoreboard()
     loop_counter = 0
     while game_is_on:
         time.sleep(0.1)
@@ -57,6 +66,7 @@ screen.tracer(0)
 player = Player()
 car_manager = CarManager()
 scoreboard = Scoreboard()
+is_on_menu = True
 
 screen.listen()
 screen.onkey(player.move_up, 'w')
@@ -69,7 +79,9 @@ screen.onkey(player.move_right, 'd')
 screen.onkey(player.move_right, 'D')
 screen.onkey(restart_game, 'r')
 screen.onkey(restart_game, 'R')
+screen.onkey(play_game, 'p')
+screen.onkey(play_game, 'P')
 
-start_game()
+menu = Menu()
 
 screen.exitonclick()
