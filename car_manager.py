@@ -3,8 +3,8 @@ from car import Car
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
-STARTING_NUMBER_OF_CARS = 10
+MOVE_INCREMENT = 2
+STARTING_NUMBER_OF_CARS = 1
 
 
 class CarManager:
@@ -33,7 +33,8 @@ class CarManager:
                 self.cars.remove(car)
 
     def new_car(self):
-        self.cars.append(self.generate_car())
+        for i in range(self.number_of_cars):
+            self.cars.append(self.generate_car())
 
     def collision(self, player):
         for car in self.cars:
