@@ -45,7 +45,7 @@ class CarManager:
     def reset(self):
         for car in self.cars:
             car.hideturtle()
-            self.cars.remove(car)
+        self.cars = []
         self.speed = STARTING_MOVE_DISTANCE
         self.number_of_cars = STARTING_NUMBER_OF_CARS
 

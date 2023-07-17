@@ -24,7 +24,10 @@ class Scoreboard(Turtle):
     def print_gameover(self):
         self.goto(0, 0)
         self.write("Game Over", align="center", font=FONT)
+        self.goto(0, -20)
+        self.write("Press 'R' or 'r' to play again", align="center", font=("Courier", 12, "normal"))
 
     def reset(self):
+        self.clear()
         self.level = 1
         self.print_scoreboard()

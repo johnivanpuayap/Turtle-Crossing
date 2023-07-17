@@ -6,6 +6,7 @@ from scoreboard import Scoreboard
 
 
 def start_game():
+    print('Starting the game')
     game_is_on = True
     loop_counter = 0
     while game_is_on:
@@ -29,6 +30,13 @@ def start_game():
         print(f'Number of cars: {len(car_manager.cars)}')
 
 
+def restart_game():
+    scoreboard.reset()
+    player.reset()
+    car_manager.reset()
+    start_game()
+
+
 def level_up():
     scoreboard.level_up()
     car_manager.level_up()
@@ -37,9 +45,8 @@ def level_up():
 
 def game_over():
     player.reset()
-    scoreboard.print_gameover()
     car_manager.reset()
-
+    scoreboard.print_gameover()
 
 
 screen = Screen()
@@ -60,6 +67,8 @@ screen.onkey(player.move_left, 'a')
 screen.onkey(player.move_left, 'A')
 screen.onkey(player.move_right, 'd')
 screen.onkey(player.move_right, 'D')
+screen.onkey(restart_game, 'r')
+screen.onkey(restart_game, 'R')
 
 start_game()
 
